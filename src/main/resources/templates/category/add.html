@@ -8,7 +8,7 @@
 
 <div class="container body-content">
 
-    <form th:object="${category}" method="post">
+    <form th:object="${category}" method="POST">
 
         <div class="form-group" th:classappend="${#fields.hasErrors('name') ? 'has-error' : ''}" >
             <label th:for="name">Name</label>

@@ -37,7 +37,7 @@ public class CheeseController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCheeseForm(Model model) {
-        model.addAttribute("title", "Add Cheese");
+        model.addAttribute("title", "Add Favorite Cheese");
         model.addAttribute(new Cheese());
 
         model.addAttribute("categories", categoryDao.findAll());
@@ -46,10 +46,12 @@ public class CheeseController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
-                                       Errors errors, @RequestParam int categoryId, Model model) {
+                                       Errors errors,
+                                       @RequestParam int categoryId,
+                                       Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Cheese");
+            model.addAttribute("title", "Add Favorite Cheese");
             return "cheese/add";
         }
 
@@ -62,7 +64,7 @@ public class CheeseController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveCheeseForm(Model model) {
         model.addAttribute("cheeses", cheeseDao.findAll());
-        model.addAttribute("title", "Remove Cheese");
+        model.addAttribute("title", "Remove Old Cheese");
         return "cheese/remove";
     }
 
@@ -79,7 +81,7 @@ public class CheeseController {
     @RequestMapping(value = "category/{categoryId}", method = RequestMethod.GET)
     public String category(Model model, @PathVariable int categoryId) {
         model.addAttribute("cheeses", categoryDao.findOne(categoryId).getCheeses());
-        model.addAttribute("title", "My Cheeses");
+        model.addAttribute("title", "Lahdi Thai's Cheeses");
         return "cheese/index";
     }
 
@@ -92,7 +94,10 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String processEditForm(@RequestParam int cheeseId, @RequestParam String cheeseName, @RequestParam String cheeseDescription, @RequestParam int categoryId) {
+    public String processEditForm(@RequestParam int cheeseId,
+                                  @RequestParam String cheeseName,
+                                  @RequestParam String cheeseDescription,
+                                  @RequestParam int categoryId) {
         Cheese cheese = cheeseDao.findOne(cheeseId);
         Category category = categoryDao.findOne(categoryId);
 

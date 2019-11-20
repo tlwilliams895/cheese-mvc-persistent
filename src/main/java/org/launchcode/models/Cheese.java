@@ -23,7 +23,6 @@ public class Cheese {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-
     @ManyToOne
     private Category category;
 
@@ -63,5 +62,43 @@ public class Cheese {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public static class AddMenuItemForm {
+
+        private Menu menu;
+
+        private Iterable<Cheese> cheeses;
+
+        @NotNull
+        private int menuId;
+
+        @NotNull
+        private int cheeseId;
+
+        public AddMenuItemForm(Menu menu, Iterable<Cheese> cheeses) {
+            this.menu = menu;
+            this.cheeses = cheeses;
+        }
+
+        public AddMenuItemForm() {
+        }
+
+        public Menu getMenu() {
+            return menu;
+        }
+
+        public Iterable<Cheese> getCheeses() {
+            return cheeses;
+        }
+
+        public int getMenuId() {
+            return menuId;
+        }
+
+        public int getCheeseId() {
+            return cheeseId;
+        }
     }
 }

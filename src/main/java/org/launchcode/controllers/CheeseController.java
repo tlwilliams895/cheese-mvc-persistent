@@ -81,7 +81,7 @@ public class CheeseController {
     @RequestMapping(value = "category/{categoryId}", method = RequestMethod.GET)
     public String category(Model model, @PathVariable int categoryId) {
         model.addAttribute("cheeses", categoryDao.findOne(categoryId).getCheeses());
-        model.addAttribute("title", "Lahdi Thai's Cheeses");
+        model.addAttribute("title", "Delicious Cheeses by Lahdi Thai");
         return "cheese/index";
     }
 
